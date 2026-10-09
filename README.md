@@ -43,8 +43,6 @@
 
 <a href="https://climatetrace.org"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/climate-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/climate-light.svg" alt="Climate TRACE and WattTime: found 2,637 wastewater treatment plants across 200 cities from satellite imagery, 300% more than official data in China, with 20 times higher throughput. Fed the COP29 emissions inventory."></picture></a>
 
-<br><br>
-
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/systems-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/systems-light.svg" alt="Built from scratch, Imperial coursework: NNUE chess engine with a C inference backend on Raspberry Pi; ARMv8-A emulator and assembler (100%); PintOS kernel; WACC optimising compiler."></picture>
 
 <br>
