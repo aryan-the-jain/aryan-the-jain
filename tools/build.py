@@ -430,15 +430,18 @@ def header(s, label, right=None, y=62):
 
 
 def link(theme, item):
+    """Compact contact pill, sized so five fit on one row."""
     _, glyph, label, handle, _ = item
-    W, H = 410, 84
+    W, H = 256, 76
     s = Svg(W, H, theme, f'{label}: {handle}')
     t = s.t
-    s.panel(42)
-    s.icon('glyph:' + glyph, 16, 16, 52)
-    s.text(84, 40, label, 's', 22, t['text'])
-    s.text(84, 63, handle, 'mono', 14, t['muted'])
-    s.text(W - 30, 52, '↗', 'm', 24, t['muted'], 'end')
+    s.panel(38)
+    s.icon('glyph:' + glyph, 14, 14, 48)
+    s.text(74, 34, label, 's', 18, t['text'])
+    size = 13
+    while size > 10 and measure(handle, 'mono', size) > W - 74 - 18:
+        size -= 0.5
+    s.text(74, 55, handle, 'mono', size, t['muted'])
     return s
 
 
