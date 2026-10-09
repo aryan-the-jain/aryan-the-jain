@@ -1,87 +1,33 @@
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/hero-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/hero-light.svg" alt="Aryan Jain. Research engineer at Imperial College London, building reliable AI systems across machine learning, systems and distributed infrastructure."></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/hero-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/hero-light.svg" alt="Aryan Jain. Building reliable AI systems across machine learning, systems and distributed infrastructure."></picture>
 
-<div align="center">
+<p><a href="https://www.linkedin.com/in/aryanthejain/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/link-linkedin-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/link-linkedin-light.svg" alt="LinkedIn: aryanthejain" width="32.5%"></picture></a>&nbsp;<a href="https://scholar.google.com/citations?user=-r_1bb0AAAAJ"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/link-scholar-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/link-scholar-light.svg" alt="Google Scholar: 3 papers" width="32.5%"></picture></a>&nbsp;<a href="https://orcid.org/0009-0005-7034-0371"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/link-orcid-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/link-orcid-light.svg" alt="ORCID: 0009-0005-7034-0371" width="32.5%"></picture></a></p>
 
-<a href="https://www.linkedin.com/in/aryanthejain/"><img src="https://img.shields.io/badge/LinkedIn-aryanthejain-000000?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-<a href="https://scholar.google.com/citations?user=-r_1bb0AAAAJ"><img src="https://img.shields.io/badge/Google_Scholar-3_papers-000000?style=for-the-badge&logo=googlescholar&logoColor=white" alt="Google Scholar"></a>
-<img src="https://img.shields.io/badge/Imperial-First--Class_M.Eng-000000?style=for-the-badge" alt="Imperial College London, First-Class M.Eng">
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/highlights-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/highlights-light.svg" alt="Highlights: Amadeus Award, Best 2nd-year group project; NASA Artemis, &quot;Moon to Mars&quot; winner; COP29 dataset, Climate TRACE inventory; UN V-Award, Social impact, 2022"></picture>
 
-🏆 **Amadeus Award** · 🚀 **NASA Artemis winner** · 🌍 **COP29 dataset** · 🇺🇳 **UN V-Award**
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/now-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/now-light.svg" alt="Now: Research Engineer · stealth startup; Co-Chair elect, Imperial College AI Society; Year 3 · M.Eng Computing (AI &amp; ML)"></picture>
 
-</div>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/timeline-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/timeline-light.svg" alt="Experience: Software Engineering Intern at Bending Spoons · Harvest; Research Engineer, part-time at Stealth startup; Data Infrastructure Intern at Sarvam AI; Intern, AI at the Edge at People+ai; M.Eng Computing (AI &amp; ML) at Imperial College London; Researcher at Climate TRACE · WattTime; Computer Vision Intern at ARTPARK · IISc Bangalore; Founder &amp; Technical Lead at WatchBOT"></picture>
 
-### 🔭 Now
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/impact-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/impact-light.svg" alt="Bending Spoons, Harvest: 115 merged PRs in 13 weeks; #1 contributor on the team this quarter; 6.7× faster assignment page 2.7s → 0.4s; $5M ARR product rebuilt natively inside Harvest"></picture>
 
-- 🧠 **Research Engineer** (part-time) at a stealth startup, building a learned governance layer for multi-agent systems: adaptive permissioning, escalation and auditability.
-- 🤖 **Co-Chair elect, Imperial College AI Society**, and **Lead, Google Developer Groups** at Imperial.
-- 🎓 **Year 3**: Generative AI · Mathematics for ML · NLP · Computer Vision · Concurrency · Advanced Computer Architecture · Digital Systems Design · Systems Performance Engineering · Corporate Finance
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/year-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/year-light.svg" alt="Work from July 2025 to now, reconstructed from private repositories: Sarvam AI, PintOS in term 1, near-daily WACC compiler work in term 2, Alongside, and Harvest at Bending Spoons."></picture>
 
-<br>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/label-work-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/label-work-light.svg" alt="Selected work"></picture>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/timeline-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/timeline-light.svg" alt="Experience: Bending Spoons (Harvest), SWE Intern, Jul–Oct 2026. Stealth startup, Research Engineer, Jan 2026 to now. Sarvam AI, Data Infrastructure Intern, Jul–Sep 2025. People+ai, Intern, Nov 2024 to Mar 2025. Imperial College London, M.Eng Computing (AI & ML), Sep 2024 to now. Climate TRACE and WattTime, Researcher, Jul 2022 to Aug 2024. ARTPARK at IISc Bangalore, Computer Vision Intern, Oct 2021 to Jul 2022. WatchBOT, Founder and Technical Lead, Dec 2020 to Sep 2021."></picture>
+<p><a href="https://github.com/aryan-the-jain/DRP_07"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-alongside-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-alongside-light.svg" alt="Alongside: Facilitated peer-support groups for bereaved young adults: a group room, a private line to the facilitator, a quiet space and a facilitator dashboard. Imperial&#x27;s best second-year group project." width="49%"></picture></a>&nbsp;<a href="https://github.com/kkorel/p2p-energy-trading"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-p2p-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-p2p-light.svg" alt="P2P energy trading: Peer-to-peer solar trading with an AI agent on web, WhatsApp and voice. I built Ed25519 request signing, the trust engine and trade limits, and overselling protection with row locks and Redlock." width="49%"></picture></a></p>
 
-<br>
+<p><a href="https://www.sarvam.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-sarvam-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-sarvam-light.svg" alt="Sarvam AI: A WhatsApp multi-agent system that gets people through government schemes end to end, using RAG, type-safe orchestration and Playwright browser execution in a vLLM loop, with zero-shot onboarding for new schemes." width="49%"></picture></a>&nbsp;<a href="https://github.com/aryan-the-jain/EQIP"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-eqip-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-eqip-light.svg" alt="EQIP: AI agents for equitable IP collaboration: contribution attribution, ownership arrangements and contract drafting, grounded in a retrieval-augmented knowledge base." width="49%"></picture></a></p>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/impact-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/impact-light.svg" alt="Bending Spoons, Harvest: 115 merged PRs in 13 weeks, number one contributor on the team, 6.7 times faster assignment page (2.7s to 0.4s), rebuilt a $5M ARR product natively inside Harvest."></picture>
+<a href="https://climatetrace.org"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/climate-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/climate-light.svg" alt="Climate TRACE and WattTime: A global geospatial ML pipeline that finds wastewater treatment plants in satellite imagery and estimates their greenhouse gas emissions, built with researchers from Johns Hopkins APL and Stanford."></picture></a>
 
-- 🔁 **Rebuilt Forecast**, Harvest's decade-old sister product, natively inside Harvest. I owned the architecture, data models, APIs and delivery across capacity planning, scheduling, utilisation and plan-vs-actual.
-- 📦 **Self-serve import** that brings Forecast customers' scheduling history across without loss.
-- ⚡ **Planning engine at scale:** interactive across 1,000-day horizons, 20k assignments and 2,000+ projects. Also shipped milestone billing, project tags and permissions, and gave 48 code reviews.
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/systems-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/systems-light.svg" alt="Built from scratch: NNUE chess engine: Self-trained, with a custom C inference backend on bare-metal Raspberry Pi graphics.; ARMv8-A emulator: AArch64 decoding, execution and an assembler. Scored 100%.; PintOS kernel: Scheduling, synchronisation, virtual memory, syscalls and file systems.; WACC compiler: Type checking, IRs, optimisations and native code generation."></picture>
 
-<br>
+<a href="https://scholar.google.com/citations?user=-r_1bb0AAAAJ"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/research-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/research-light.svg" alt="Research: Harnessing Satellite Images and Machine Learning to Detect Wastewater Treatment Plants Globally; ClimateTRACE Facility-Level Wastewater Emissions Dataset; Wastewater Sector: Emissions from Wastewater Treatment Plants; AI at the Edge: Imagining the Mega Impact"></picture></a>
 
-### 🛠️ Selected work
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/leadership-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/leadership-light.svg" alt="Leadership and more: AI-in-Energy Hackathon: Led it: 450+ participants, £25k in prizes, sponsors incl. Google, Anthropic and Beckn.; Google Developer Groups: Lead at Imperial, after a year as Technical Director of the student club.; DhanDanaDan: Founded a financial literacy platform that certified 5,500+ learners. UN V-Award 2022.; WatchBOT: Founded a computer vision startup for classroom attention. US$20k raised, piloted in 3 schools.; AP Scholar with Distinction: 5/5 in Calculus BC, Statistics and Physics C. Merit, Indian Olympiad Qualifier in Maths.; Off the keyboard: Guitar, RSL Grade 8 Merit. Tennis for Imperial and for Haryana in AITA tournaments."></picture>
 
-<p>
-<a href="https://github.com/aryan-the-jain/DRP_07"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-alongside-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-alongside-light.svg" alt="Alongside: facilitated peer-support groups for bereaved young adults. Winner of Imperial's Amadeus Award, 93.3%." width="49%"></picture></a>
-<a href="https://github.com/kkorel/p2p-energy-trading"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-p2p-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-p2p-light.svg" alt="P2P energy trading on the Beckn protocol with an AI trading agent." width="49%"></picture></a>
-</p>
-<p>
-<a href="https://www.sarvam.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-sarvam-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-sarvam-light.svg" alt="Sarvam AI: WhatsApp multi-agent system for government scheme access." width="49%"></picture></a>
-<a href="https://github.com/aryan-the-jain/EQIP"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-eqip-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/card-eqip-light.svg" alt="EQIP: AI agents for equitable IP collaboration." width="49%"></picture></a>
-</p>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/stack-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/stack-light.svg" alt="Stack: Python, C, TypeScript, Scala, Haskell, Java, Kotlin, Ruby, Bash, PyTorch, TensorFlow, React, Next.js, Node.js, PostgreSQL, Redis, Docker, GCP, Linux, Git"></picture>
 
-<a href="https://climatetrace.org"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/climate-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/climate-light.svg" alt="Climate TRACE and WattTime: found 2,637 wastewater treatment plants across 200 cities from satellite imagery, 300% more than official data in China, with 20 times higher throughput. Fed the COP29 emissions inventory."></picture></a>
+<a href="https://github.com/aryan-the-jain/Focus-Mode"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/side-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/side-light.svg" alt="On the side: Focus-Mode. My own macOS focus timer and site blocker, with lock-in modes and a Chrome extension."></picture></a>
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/systems-dark.svg"><img src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/main/assets/systems-light.svg" alt="Built from scratch, Imperial coursework: NNUE chess engine with a C inference backend on Raspberry Pi; ARMv8-A emulator and assembler (100%); PintOS kernel; WACC optimising compiler."></picture>
-
-<br>
-
-### 📄 Research
-
-- **Harnessing Satellite Images and Machine Learning to Detect Wastewater Treatment Plants Globally**<br>
-  <sub>A. Jain, L. Sridhar, A. Davitt, G. Volpato, G. McCormick, H. Srinivas · <i>AGU Fall Meeting 2023</i> · GC21F-0964</sub>
-- **ClimateTRACE Facility-Level Wastewater Emissions Dataset**<br>
-  <sub>G. Collins, A. Jain, P. Sicurello, E. Kirwan, P. Tulloch, C. Piatko, L. Sridhar et al. · <i>AGU Fall Meeting 2024</i> · H53O-1308</sub>
-- **Wastewater Sector: Emissions from Wastewater Treatment Plants**<br>
-  <sub>A. Jain, L. Sridhar, A. Davitt · <i>AGU24</i> · 2024</sub>
-- 📝 *AI at the Edge: Imagining the Mega Impact*, People+ai, as co-lead and technical author
-
-### 🏅 Recognition & leadership
-
-- 🏆 **Amadeus Award**: best second-year computing group project, Imperial (2026)
-- 🚀 **NASA Artemis "Moon to Mars" Challenge, winner**: 3D simulation and path planning for Lunar South Pole exploration
-- 🇺🇳 **UN V-Award 2022**: founded DhanDanaDan, a financial literacy platform certifying 5,500+ learners
-- ⚡ **Led Imperial's AI-in-Energy Hackathon**: 450+ participants, £25k in prizes, and sponsors including Google, Anthropic and Beckn
-- 💡 **Founder, WatchBOT**: computer vision for classroom attention, US$20k raised and piloted in three schools
-
-### 🧰 Stack
-
-<p>
-  <img src="https://skillicons.dev/icons?i=py,c,ts,scala,haskell,java,kotlin,ruby,bash&theme=dark" alt="Python, C, TypeScript, Scala, Haskell, Java, Kotlin, Ruby, Bash">
-  <br>
-  <img src="https://skillicons.dev/icons?i=pytorch,tensorflow,react,nextjs,nodejs,postgres,redis,docker,gcp,linux,git&theme=dark" alt="PyTorch, TensorFlow, React, Next.js, Node.js, PostgreSQL, Redis, Docker, GCP, Linux, Git">
-</p>
-
-<sub>🧪 <b>On the side:</b> <a href="https://github.com/aryan-the-jain/Focus-Mode">Focus-Mode</a>, my own macOS focus timer and site blocker.</sub>
-
-<br><br>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/output/snake-dark.svg">
-  <img alt="Contribution graph snake" src="https://raw.githubusercontent.com/aryan-the-jain/aryan-the-jain/output/snake.svg">
-</picture>
-
-<div align="center"><sub>🎸 Guitar (RSL Grade 8) · 🎾 Imperial College tennis</sub></div>
-
-<!-- Graphics are generated: edit tools/profile.py, then run `python tools/build.py`. -->
+<!-- Generated graphics: edit tools/profile.py, then run `python tools/build.py`. -->
