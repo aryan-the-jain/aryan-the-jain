@@ -2,15 +2,15 @@
 
 Research-oriented software engineer building reliable AI systems, across machine learning, systems and distributed infrastructure. M.Eng Computing (AI & ML) at Imperial College London, First-Class.
 
-**Bending Spoons · Harvest** (Software Engineering Intern, summer 2026)
+**Now**
+- Part-time Research Engineer at a stealth startup, building a learned governance layer for multi-agent systems (permissioning, escalation, auditability).
+- Co-Chair elect of the **Imperial College AI Society** and Lead of **Google Developer Groups** at Imperial.
+
+**Previously: Bending Spoons · Harvest** (Software Engineering Intern, Jul–Oct 2026)
 - Rebuilt **Forecast**, Harvest's decade-old ~$5M ARR sister product, natively inside Harvest. I owned the architecture, data models, APIs and delivery across capacity planning, scheduling, utilisation and plan-vs-actual, plus a self-serve import that migrates Forecast customers' history without loss.
 - Also shipped milestone billing, project tags and permissions.
 - Made the planning engine fast at scale: interactive across 1,000-day horizons, 20k assignments and 2,000+ projects. Cut the assignment page from 2.7s to under 0.4s.
 - **115 merged PRs and 48 code reviews in 13 weeks**, with a median PR merged in about 4 hours. Top contributor on the team for the quarter.
-
-**Now**
-- Part-time Research Engineer at a stealth startup, building a learned governance layer for multi-agent systems (permissioning, escalation, auditability).
-- Co-Chair elect of the **Imperial College AI Society** and Lead of **Google Developer Groups** at Imperial.
 
 **Selected work**
 
