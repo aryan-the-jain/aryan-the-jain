@@ -2,6 +2,8 @@
 
 Research-oriented software engineer building reliable AI systems, across machine learning, systems and distributed infrastructure. M.Eng Computing (AI & ML) at Imperial College London, First-Class.
 
+**Year 3 (2026–27):** Generative AI · Mathematics for Machine Learning · Natural Language Processing · Computer Vision · Concurrency · Advanced Computer Architecture · Digital Systems Design · Systems Performance Engineering · Corporate Finance
+
 **Now**
 - Part-time Research Engineer at a stealth startup, building a learned governance layer for multi-agent systems (permissioning, escalation, auditability).
 - Co-Chair elect of the **Imperial College AI Society** and Lead of **Google Developer Groups** at Imperial.
