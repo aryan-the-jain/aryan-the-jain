@@ -42,8 +42,8 @@ def build():
         pic('now', 'Now: ' + '; '.join(x[1] for x in P.NOW_ITEMS)),
         pic('timeline', 'Experience: ' + '; '.join(f'{r[2]} at {r[1]}' for r in P.EXPERIENCE)),
         pic('impact', 'Bending Spoons, Harvest: ' + '; '.join(' '.join(x) for x in P.IMPACT['stats'])),
-        pic('year', 'Work since July 2025, public commits plus estimated private work. ' + '. '.join(
-            f'{lane}: ' + ', '.join(item[2] for item in items) for lane, items in P.YEAR_LANES)),
+        pic('year', 'Work since July 2025, real commits plus estimated private work. ' + '. '.join(
+            f'{lane}: ' + ', '.join(item[2] for item in items) for lane, items in P.YEAR_TRACKS)),
         pic('label-work', 'Selected work'),
         '<p>' + card('alongside') + '&nbsp;' + card('p2p') + '</p>',
         '<p>' + card('sarvam') + '&nbsp;' + card('eqip') + '</p>',

@@ -634,11 +634,11 @@ def year(theme):
     pitch = int((W - gx - 48) // weeks)
     gap = 3
     cell = pitch - gap
-    lane_h = 34
+    lane_hs = [40, 54]  # main line, alongside line (room for two-line labels)
     lanes_top = gy + 7 * (cell + gap) + 30
-    H = lanes_top + len(P.YEAR_LANES) * lane_h + 70
-    s = Svg(W, H, theme, 'Work since July 2025, public and estimated private. ' + '. '.join(
-        f'{lane}: ' + ', '.join(item[2] for item in items) for lane, items in P.YEAR_LANES))
+    H = lanes_top + sum(lane_hs) + 66
+    s = Svg(W, H, theme, 'Work since July 2025. ' + '. '.join(
+        f'{lane}: ' + ', '.join(item[2] for item in items) for lane, items in P.YEAR_TRACKS))
     t = s.t
     levels = (['#161616', '#3a3a3a', '#6e6e6e', '#a8a8a8', '#f2f2f2'] if theme == 'dark'
               else ['#ededed', '#c9c9c9', '#8c8c8c', '#4a4a4a', '#0a0a0a'])
@@ -646,12 +646,18 @@ def year(theme):
     first = dt.date(*P.YEAR_START)
     header(s, f'WORK  ·  {MONTHS[first.month - 1].upper()} {first.year} → NOW', 'PUBLIC + PRIVATE')
 
-    periods = [(dt.date(*a), dt.date(*b), wd, we) for a, b, wd, we in P.YEAR_PERIODS]
+    gitlab = {}
+    gl_cache = os.path.join(HERE, 'cache', 'gitlab.json')
+    if os.path.exists(gl_cache):
+        with open(gl_cache) as f:
+            gitlab = json.load(f)
+    periods = [(dt.date(*a), dt.date(*b), wd, we) for a, b, wd, we, src in P.YEAR_PERIODS
+               if not (gitlab and src == 'gitlab')]
 
     terms = [(dt.date(*a), dt.date(*b)) for a, b in P.YEAR_TERMS]
 
     def intensity(d):
-        extra = P.YEAR_COURSEWORK if any(a <= d <= b for a, b in terms) else 0
+        extra = P.YEAR_COURSEWORK if not gitlab and any(a <= d <= b for a, b in terms) else 0
         for a, b, wd, we in periods:
             if a <= d <= b:
                 return min(1, (wd if d.weekday() < 5 else we) + extra)
@@ -675,7 +681,8 @@ def year(theme):
         # Busy periods mean most days have commits, at varying volumes.
         v = p * (0.25 + rnd.random()) if rnd.random() < p + 0.05 else 0
         lvl = 0 if v < 0.12 else 1 if v < 0.3 else 2 if v < 0.5 else 3 if v < 0.74 else 4
-        lvl = max(lvl, real_level(real.get(d.isoformat(), 0)))
+        key = d.isoformat()
+        lvl = max(lvl, real_level(real.get(key, 0) + gitlab.get(key, 0)))
         s.add(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{levels[lvl]}"/>')
         if d.day <= 7 and row == 0 and (d.year, d.month) not in month_done:
             month_done.add((d.year, d.month))
@@ -691,28 +698,35 @@ def year(theme):
         return gx + (d - start).days / 7 * (cell + gap)
 
     x_end = gx + weeks * (cell + gap) - gap
-    for k, (lane, items) in enumerate(P.YEAR_LANES):
-        y = lanes_top + k * lane_h
-        s.add(f'<line x1="{gx}" y1="{y + lane_h / 2:.1f}" x2="{x_end:.1f}" y2="{y + lane_h / 2:.1f}" stroke="{t["faint"]}" stroke-opacity=".6"/>')
+    y = lanes_top
+    for k, (lane, items) in enumerate(P.YEAR_TRACKS):
+        lane_h = lane_hs[min(k, 1)]
+        main = k == 0
         s.text(gx - 14, y + lane_h / 2 + 4, lane, 'mono', 11, t['muted'], 'end', ls=1)
         for a, b, label in items:
-            a = dt.date(*a)
-            b = dt.date(*b) if b else end
-            x1, x2 = X(a), min(X(b) + cell, x_end)
-            bh = 22
+            x1, x2 = X(dt.date(*a)), min(X(dt.date(*b)) + cell, x_end)
+            bh = 26 if main else 46
             by = y + (lane_h - bh) / 2
-            s.add(f'<rect x="{x1:.1f}" y="{by:.1f}" width="{max(x2 - x1, 8):.1f}" height="{bh}" rx="6" fill="{t["text"]}"/>')
-            tw = measure(label, 's', 13)
-            if tw + 20 <= x2 - x1:
-                s.text(x1 + 10, by + 15.5, label, 's', 13, t['panel'])
-            elif x2 + 8 + tw < W - 48:
-                s.text(x2 + 8, by + 15.5, label, 's', 13, t['text'])
+            size = 13 if main else 12.5
+            font = 's' if main else 'm'
+            if main:
+                s.add(f'<rect x="{x1:.1f}" y="{by:.1f}" width="{x2 - x1:.1f}" height="{bh}" rx="7" fill="{t["text"]}"/>')
+                inside = measure(label, font, size) + 20 <= x2 - x1
+                ink, tx = (t['panel'], x1 + 10) if inside else (t['text'], x2 + 8)
+                s.text(tx, by + 17.5, label, font, size, ink)
             else:
-                s.text(x1 - 8, by + 15.5, label, 's', 13, t['text'], 'end')
+                s.add(f'<rect x="{x1 + 0.75:.1f}" y="{by + 0.75:.1f}" width="{x2 - x1 - 1.5:.1f}" height="{bh - 1.5}" rx="7" fill="none" stroke="{t["text"]}" stroke-opacity=".55" stroke-width="1.5"/>')
+                lines = wrap(label, font, size, x2 - x1 - 18)[:2]
+                top = by + bh / 2 - (len(lines) - 1) * 8 + 4.5
+                for j, line in enumerate(lines):
+                    s.text(x1 + 10, top + j * 16, line, font, size, t['text'])
+        y += lane_h
 
     # Legend and note
     ly = H - 30
-    s.text(48, ly, 'Public GitHub days are exact. Private work (Sarvam, Imperial GitLab, Bending Spoons) is estimated.', 'r', 14, t['muted'])
+    note = ('GitHub and Imperial GitLab days are exact. Sarvam and Bending Spoons work is estimated.' if gitlab
+            else 'Public GitHub days are exact. Private work (Sarvam, Imperial GitLab, Bending Spoons) is estimated.')
+    s.text(48, ly, note, 'r', 14, t['muted'])
     lx = W - 48 - 5 * (14 + 4) - measure('More', 'mono', 12)
     s.text(lx - 10 - 0, ly, 'Less', 'mono', 12, t['muted'], 'end')
     for k, c in enumerate(levels):
