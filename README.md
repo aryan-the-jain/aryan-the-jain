@@ -45,7 +45,7 @@
 - 🔁 **Rebuilt Forecast** (Harvest's decade-old sister product) natively inside Harvest. I owned the architecture, data models, APIs and delivery across capacity planning, scheduling, utilisation and plan-vs-actual.
 - 📦 **Self-serve import** that brings Forecast customers' scheduling history across without loss.
 - ⚡ **Planning engine at scale:** interactive across 1,000-day horizons, 20k assignments and 2,000+ projects, with virtualised timelines and conflict-safe concurrent editing.
-- 🧾 Also shipped milestone billing, project tags and permissions, and gave 48 code reviews. Median PR merged in about 4 hours.
+- 🧾 Also shipped milestone billing, project tags and permissions, and gave 48 code reviews.
 
 <br>
 
