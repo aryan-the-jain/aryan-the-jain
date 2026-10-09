@@ -154,6 +154,20 @@ GLYPHS = {
                      for r in range(4) for c in range(4)) + '<rect x="26" y="26" width="48" height="48"/>',
     'chip': '<rect x="32" y="32" width="36" height="36" rx="4"/><path d="M40 26 V32 M50 26 V32 M60 26 V32 M40 68 V74 M50 68 V74 M60 68 V74 M26 40 H32 M26 50 H32 M26 60 H32 M68 40 H74 M68 50 H74 M68 60 H74"/>',
     'terminal': '<rect x="24" y="30" width="52" height="40" rx="5"/><path d="M34 44 L42 50 L34 56 M48 58 H62"/>',
+    'trophy': '<path d="M36 26 H64 V42 C64 52 57 58 50 58 C43 58 36 52 36 42 Z M36 32 H26 C26 42 31 46 37 46 M64 32 H74 C74 42 69 46 63 46 M50 58 V68 M38 74 H62 M42 68 H58 V74 H42 Z"/>',
+    'rocket': '<path d="M50 22 C62 32 64 48 58 64 H42 C36 48 38 32 50 22 Z"/><circle cx="50" cy="42" r="5"/><path d="M42 58 L32 68 V74 L42 66 M58 58 L68 68 V74 L58 66 M46 70 L50 80 L54 70"/>',
+    'globe': '<circle cx="50" cy="50" r="24"/><path d="M26 50 H74 M50 26 C38 38 38 62 50 74 M50 26 C62 38 62 62 50 74"/>',
+    'medal': '<circle cx="50" cy="58" r="15"/><path d="M40 22 L46 44 M60 22 L54 44 M40 22 H60"/><path d="M45 58 L49 62 L56 54"/>',
+    'agents': '<circle cx="50" cy="30" r="7"/><circle cx="30" cy="66" r="7"/><circle cx="70" cy="66" r="7"/><path d="M46 36 L34 60 M54 36 L66 60 M37 66 H63"/>',
+    'people': '<circle cx="38" cy="38" r="9"/><circle cx="64" cy="40" r="7"/><path d="M22 72 C22 60 30 54 38 54 C46 54 54 60 54 72 M56 72 C56 62 60 56 66 56 C72 56 78 62 78 72"/>',
+    'cap': '<path d="M50 30 L80 44 L50 58 L20 44 Z"/><path d="M34 51 V64 C42 72 58 72 66 64 V51 M80 44 V60"/>',
+    'linkedin': '<path d="M34 44 V70 M34 32 V33"/><path d="M48 70 V44 M48 54 C48 46 54 43 59 43 C65 43 68 47 68 54 V70"/>',
+    'book': '<path d="M50 32 C42 26 30 26 24 30 V72 C30 68 42 68 50 74 C58 68 70 68 76 72 V30 C70 26 58 26 50 32 Z M50 32 V74"/>',
+    'orcid': '<circle cx="50" cy="50" r="26"/><path d="M40 40 V64 M40 32 V33 M50 40 V64 H55 C63 64 67 58 67 52 C67 46 63 40 55 40 Z"/>',
+    'star': '<path d="M50 24 L57 41 L76 42 L61 54 L66 72 L50 62 L34 72 L39 54 L24 42 L43 41 Z"/>',
+    'note': '<path d="M42 70 V32 L72 26 V62"/><circle cx="35" cy="70" r="8"/><circle cx="65" cy="62" r="8"/>',
+    'target': '<circle cx="50" cy="50" r="24"/><circle cx="50" cy="50" r="13"/><circle cx="50" cy="50" r="3" fill="#f2f2f2"/>',
+    'paper': '<path d="M32 22 H58 L70 34 V78 H32 Z M58 22 V34 H70 M40 46 H62 M40 56 H62 M40 66 H54"/>',
     'braces': '<path d="M42 28 C34 28 36 40 36 44 C36 48 30 50 30 50 C30 50 36 52 36 56 C36 60 34 72 42 72 M58 28 C66 28 64 40 64 44 C64 48 70 50 70 50 C70 50 64 52 64 56 C64 60 66 72 58 72"/>',
 }
 
@@ -300,7 +314,9 @@ def timeline(theme):
 
 def impact(theme):
     d = P.IMPACT
-    W, H = 1280, 270
+    W = 1280
+    bullets = [wrap(b, 'r', 17.5, W - 130) for b in d.get('bullets', [])]
+    H = 270 + (30 + sum(len(b) * 26 + 14 for b in bullets) if bullets else 0)
     s = Svg(W, H, theme, d['title'] + ': ' + '; '.join(' '.join(x) for x in d['stats']))
     t = s.t
     s.css.append(FADE_CSS)
@@ -319,6 +335,16 @@ def impact(theme):
         s.text(x, 218, label, 's', 19, t['text'])
         s.text(x, 242, sub, 'r', 16, t['muted'])
         s.add('</g>')
+    if bullets:
+        y = 290
+        s.add(f'<line x1="48" y1="{y - 18}" x2="{W - 48}" y2="{y - 18}" stroke="{t["faint"]}"/>')
+        for lines in bullets:
+            y += 12
+            s.add(f'<rect x="50" y="{y + 1}" width="8" height="8" rx="2" fill="{t["text"]}"/>')
+            for line in lines:
+                s.text(76, y + 12, line, 'r', 17.5, t['muted'])
+                y += 26
+            y += 2
     return s
 
 
@@ -391,11 +417,298 @@ def systems(theme):
     return s
 
 
+def header(s, label, right=None, y=62):
+    t = s.t
+    s.text(48, y, label, 'mono', 16, t['text'], ls=3)
+    if right:
+        s.text(s.w - 48, y, right, 'mono', 14, t['muted'], 'end', ls=2)
+    s.add(f'<line x1="48" y1="{y + 28}" x2="{s.w - 48}" y2="{y + 28}" stroke="{t["faint"]}"/>')
+
+
+def link(theme, item):
+    _, glyph, label, handle, _ = item
+    W, H = 410, 84
+    s = Svg(W, H, theme, f'{label}: {handle}')
+    t = s.t
+    s.panel(42)
+    s.icon('glyph:' + glyph, 16, 16, 52)
+    s.text(84, 40, label, 's', 22, t['text'])
+    s.text(84, 63, handle, 'mono', 14, t['muted'])
+    s.text(W - 30, 52, '↗', 'm', 24, t['muted'], 'end')
+    return s
+
+
+def highlights(theme):
+    W, H = 1280, 150
+    s = Svg(W, H, theme, 'Highlights: ' + '; '.join(f'{a}, {b}' for _, a, b in P.HIGHLIGHTS))
+    t = s.t
+    s.panel()
+    cw = (W - 64) / len(P.HIGHLIGHTS)
+    for i, (glyph, title, sub) in enumerate(P.HIGHLIGHTS):
+        x = 32 + i * cw + 16
+        if i:
+            s.add(f'<line x1="{32 + i * cw:.1f}" y1="34" x2="{32 + i * cw:.1f}" y2="{H - 34}" stroke="{t["faint"]}"/>')
+        s.icon('glyph:' + glyph, x, 47, 56)
+        room = cw - 74 - 28
+        size = 16
+        while size > 12 and measure(sub, 'r', size) > room:
+            size -= 0.5
+        s.text(x + 74, 72, title, 'b', 23, t['text'], ls=-0.5)
+        s.text(x + 74, 98, sub, 'r', size, t['muted'])
+    return s
+
+
+def flow_chips(s, x0, y, items, max_x, size=14):
+    x = x0
+    for item in items:
+        w = measure(item, 'mono', size) + 26
+        if x + w > max_x:
+            x, y = x0, y + 40
+        s.add(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="30" rx="15" fill="{s.t["chip"]}" stroke="{s.t["chipline"]}"/>')
+        s.text(x + 13, y + 20, item, 'mono', size, s.t['text'])
+        x += w + 8
+    return y + 30
+
+
+def now_block(theme):
+    W = 1280
+    # Lay out first to know the height.
+    rows = []
+    for glyph, title, text, chips in P.NOW_ITEMS:
+        lines = wrap(text, 'r', 18, W - 220) if text else []
+        rows.append((glyph, title, lines, chips))
+    def chips_height(chips):
+        if not chips:
+            return 0
+        x, rows_ = 132, 1
+        for c in chips:
+            w = measure(c, 'mono', 14) + 34
+            if x + w > W - 48:
+                x, rows_ = 132, rows_ + 1
+            x += w
+        return rows_ * 40
+    H = 112 + sum(56 + len(l) * 26 + chips_height(c) + 22 for _, _, l, c in rows) + 10
+    s = Svg(W, H, theme, 'Now: ' + '; '.join(r[1] for r in P.NOW_ITEMS))
+    t = s.t
+    s.panel()
+    header(s, 'NOW')
+    y = 116
+    for i, (glyph, title, lines, chips) in enumerate(rows):
+        if i:
+            s.add(f'<line x1="132" y1="{y - 12}" x2="{W - 48}" y2="{y - 12}" stroke="{t["faint"]}" stroke-opacity=".7"/>')
+        s.icon('glyph:' + glyph, 48, y, 56)
+        s.text(132, y + 24, title, 's', 21, t['text'])
+        yy = y + 52
+        for line in lines:
+            s.text(132, yy, line, 'r', 18, t['muted'])
+            yy += 26
+        if chips:
+            yy = flow_chips(s, 132, yy - 16, chips, W - 48) + 10
+        y = max(yy, y + 56) + 22
+    return s
+
+
+def label(theme, text, right=''):
+    W, H = 1280, 64
+    s = Svg(W, H, theme, text)
+    t = s.t
+    s.text(4, 40, text, 'mono', 17, t['text'], ls=3)
+    w = measure(text, 'mono', 17, 3)
+    s.add(f'<line x1="{w + 24:.1f}" y1="34" x2="{W - 4 - (measure(right, "mono", 14, 2) + 20 if right else 0):.1f}" y2="34" stroke="{t["faint"]}"/>')
+    if right:
+        s.text(W - 4, 40, right, 'mono', 14, t['muted'], 'end', ls=2)
+    return s
+
+
+def research(theme):
+    W = 1280
+    chip_w = lambda v: measure(v, 'mono', 12, 1.5) + 24
+    items = [(wrap(title, 's', 20, W - 132 - 48 - chip_w(venue) - 32), authors, venue) for title, authors, venue in P.RESEARCH]
+    H = 112 + sum(len(tl) * 28 + 70 for tl, _, _ in items) + 10
+    s = Svg(W, H, theme, 'Research: ' + '; '.join(r[0] for r in P.RESEARCH))
+    t = s.t
+    s.panel()
+    header(s, 'RESEARCH', 'GOOGLE SCHOLAR  ↗')
+    y = 118
+    for i, (tl, authors, venue) in enumerate(items):
+        if i:
+            s.add(f'<line x1="132" y1="{y - 16}" x2="{W - 48}" y2="{y - 16}" stroke="{t["faint"]}" stroke-opacity=".7"/>')
+        s.icon('glyph:paper', 48, y - 2, 56)
+        for j, line in enumerate(tl):
+            s.text(132, y + 20 + j * 28, line, 's', 20, t['text'])
+        yy = y + 20 + len(tl) * 28
+        s.text(132, yy, authors, 'r', 16, t['muted'])
+        s.chip(W - 48 - measure(venue, 'mono', 12, 1.5) - 24, y + 2, venue, 12, 1.5, 12, 26)
+        y = yy + 46
+    return s
+
+
+def leadership(theme):
+    W = 1280
+    cols = 3
+    cw = (W - 96) / cols
+    cells = [(g, title, wrap(text, 'r', 16.5, cw - 120)) for g, title, text in P.LEADERSHIP]
+    rows = math.ceil(len(cells) / cols)
+    row_h = [max(64 + len(c[2]) * 23 for c in cells[r * cols:(r + 1) * cols]) + 24 for r in range(rows)]
+    H = 112 + sum(row_h) + 8
+    s = Svg(W, H, theme, 'Leadership and more: ' + '; '.join(f'{a}: {b}' for _, a, b in P.LEADERSHIP))
+    t = s.t
+    s.panel()
+    header(s, 'LEADERSHIP & MORE')
+    y = 116
+    for r in range(rows):
+        for c in range(cols):
+            k = r * cols + c
+            if k >= len(cells):
+                break
+            glyph, title, lines = cells[k]
+            x = 48 + c * cw
+            s.icon('glyph:' + glyph, x, y, 52)
+            s.text(x + 70, y + 22, title, 's', 19, t['text'])
+            for j, line in enumerate(lines):
+                s.text(x + 70, y + 48 + j * 23, line, 'r', 16.5, t['muted'])
+        y += row_h[r]
+        if r < rows - 1:
+            s.add(f'<line x1="48" y1="{y - 12}" x2="{W - 48}" y2="{y - 12}" stroke="{t["faint"]}" stroke-opacity=".7"/>')
+    return s
+
+
+def skill_icons(ids):
+    cache = os.path.join(HERE, 'cache')
+    os.makedirs(cache, exist_ok=True)
+    path = os.path.join(cache, ids.replace(',', '-') + '.svg')
+    if not os.path.exists(path):
+        import urllib.request
+        req = urllib.request.Request(f'https://skillicons.dev/icons?i={ids}&theme=dark', headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as r, open(path, 'wb') as f:
+            f.write(r.read())
+    with open(path, 'rb') as f:
+        return 'data:image/svg+xml;base64,' + base64.b64encode(f.read()).decode(), len(ids.split(','))
+
+
+def stack(theme):
+    W = 1280
+    H = 112 + len(P.STACK) * 104 + 6
+    s = Svg(W, H, theme, 'Stack: ' + '; '.join(ids for _, ids in P.STACK))
+    t = s.t
+    s.defs.append('<filter id="mono"><feColorMatrix type="saturate" values="0"/></filter>')
+    s.panel()
+    header(s, 'STACK')
+    y = 120
+    for name, ids in P.STACK:
+        uri, n = skill_icons(ids)
+        s.text(48, y + 40, name, 'mono', 13, t['muted'], ls=2)
+        icon, gap = 60, 12
+        s.add(f'<image x="300" y="{y + 8}" width="{n * icon + (n - 1) * gap}" height="{icon}" href="{uri}" filter="url(#mono)"/>')
+        y += 104
+    return s
+
+
+def side(theme):
+    glyph, title, text, _ = P.SIDE
+    W, H = 1280, 112
+    s = Svg(W, H, theme, f'On the side: {title}. {text}')
+    t = s.t
+    s.panel(22)
+    s.icon(glyph, 32, 28, 56)
+    s.text(110, 50, 'ON THE SIDE', 'mono', 13, t['muted'], ls=2)
+    s.text(110, 80, title, 's', 21, t['text'])
+    s.text(110 + measure(title, 's', 21) + 16, 80, text, 'r', 17, t['muted'])
+    s.text(W - 36, 66, '↗', 'm', 24, t['muted'], 'end')
+    return s
+
+
+def year(theme):
+    import datetime as dt
+    W = 1280
+    end = dt.date(*P.YEAR_END)
+    start = dt.date(*P.YEAR_START)
+    start -= dt.timedelta(days=(start.weekday() + 1) % 7)  # weeks start on Sunday
+    days = (end - start).days + 1
+    weeks = math.ceil(days / 7)
+    gx, gy = 96, 142
+    pitch = int((W - gx - 48) // weeks)
+    gap = 3
+    cell = pitch - gap
+    H = gy + 7 * (cell + gap) + 150
+    s = Svg(W, H, theme, 'A year of work, reconstructed from private repositories: ' + '; '.join(p[4] for p in P.YEAR_PERIODS if p[4]))
+    t = s.t
+    levels = (['#161616', '#3a3a3a', '#6e6e6e', '#a8a8a8', '#f2f2f2'] if theme == 'dark'
+              else ['#ededed', '#c9c9c9', '#8c8c8c', '#4a4a4a', '#0a0a0a'])
+    s.panel()
+    first = dt.date(*P.YEAR_START)
+    header(s, f'WORK  ·  {MONTHS[first.month - 1].upper()} {first.year} → NOW', 'MOSTLY PRIVATE  ·  RECONSTRUCTED')
+
+    periods = [(dt.date(*a), dt.date(*b), wd, we, lab) for a, b, wd, we, lab in P.YEAR_PERIODS]
+
+    terms = [(dt.date(*a), dt.date(*b)) for a, b in P.YEAR_TERMS]
+
+    def intensity(d):
+        extra = P.YEAR_COURSEWORK if any(a <= d <= b for a, b in terms) else 0
+        for a, b, wd, we, _ in periods:
+            if a <= d <= b:
+                return min(1, (wd if d.weekday() < 5 else we) + extra)
+        return P.YEAR_BACKGROUND + extra
+
+    rnd = random.Random(2026)
+    month_done = set()
+    for i in range(days):
+        d = start + dt.timedelta(days=i)
+        col, row = i // 7, i % 7
+        x, y = gx + col * (cell + gap), gy + row * (cell + gap)
+        p = intensity(d)
+        # Busy periods mean most days have commits, at varying volumes.
+        v = p * (0.25 + rnd.random()) if rnd.random() < p + 0.05 else 0
+        lvl = 0 if v < 0.12 else 1 if v < 0.3 else 2 if v < 0.5 else 3 if v < 0.74 else 4
+        s.add(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{levels[lvl]}"/>')
+        if d.day <= 7 and row == 0 and (d.year, d.month) not in month_done:
+            month_done.add((d.year, d.month))
+            s.text(x, gy - 14, MONTHS[d.month - 1], 'mono', 13, t['muted'])
+    for row, name in ((1, 'Mon'), (3, 'Wed'), (5, 'Fri')):
+        s.text(gx - 14, gy + row * (cell + gap) + 13, name, 'mono', 12, t['muted'], 'end')
+    xt = gx + ((days - 1) // 7) * (cell + gap)
+    yt = gy + ((days - 1) % 7) * (cell + gap)
+    s.add(f'<rect x="{xt - 3}" y="{yt - 3}" width="{cell + 6}" height="{cell + 6}" rx="6" fill="none" stroke="{t["text"]}" stroke-width="1.5"/>')
+
+    # Labelled bands under the grid, one per period.
+    by = gy + 7 * (cell + gap) + 22
+    label_end = 0
+    for a, b, wd, we, lab in periods:
+        if not lab:
+            continue
+        x1 = gx + max(0, (a - start).days // 7) * (cell + gap)
+        x2 = gx + min(weeks - 1, (b - start).days // 7) * (cell + gap) + cell
+        strong = wd > 0.6
+        s.add(f'<rect x="{x1}" y="{by}" width="{x2 - x1}" height="6" rx="3" fill="{t["text"]}" fill-opacity="{0.9 if strong else 0.35}"/>')
+        if x1 >= label_end + 14:
+            s.text(x1, by + 30, lab, 's' if strong else 'r', 15, t['text'] if strong else t['muted'])
+            label_end = x1 + measure(lab, 's' if strong else 'r', 15)
+    # Legend and note
+    ly = H - 34
+    s.text(48, ly, 'Approximate: rebuilt from Sarvam, Imperial GitLab and Bending Spoons work, which this account’s graph can’t show.', 'r', 14, t['muted'])
+    lx = W - 48 - 5 * (14 + 4) - measure('More', 'mono', 12)
+    s.text(lx - 10 - 0, ly, 'Less', 'mono', 12, t['muted'], 'end')
+    for k, c in enumerate(levels):
+        s.add(f'<rect x="{lx + k * 18:.1f}" y="{ly - 12}" width="14" height="14" rx="3" fill="{c}"/>')
+    s.text(lx + 5 * 18 + 4, ly, 'More', 'mono', 12, t['muted'])
+    return s
+
+
 def main():
     os.makedirs(ASSETS, exist_ok=True)
     built = []
     for theme in THEMES:
         built.append(save('hero', theme, hero(theme)))
+        built.append(save('highlights', theme, highlights(theme)))
+        built.append(save('now', theme, now_block(theme)))
+        built.append(save('label-work', theme, label(theme, 'SELECTED WORK')))
+        built.append(save('research', theme, research(theme)))
+        built.append(save('leadership', theme, leadership(theme)))
+        built.append(save('stack', theme, stack(theme)))
+        built.append(save('side', theme, side(theme)))
+        built.append(save('year', theme, year(theme)))
+        for item in P.LINKS:
+            built.append(save(f'link-{item[0]}', theme, link(theme, item)))
         built.append(save('timeline', theme, timeline(theme)))
         built.append(save('impact', theme, impact(theme)))
         built.append(save('climate', theme, climate(theme)))

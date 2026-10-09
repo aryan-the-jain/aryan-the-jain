@@ -7,6 +7,30 @@ CHIPS = ['M.ENG COMPUTING · AI & ML', 'FIRST-CLASS', 'LONDON']
 
 NOW = (2026, 10)  # the "now" line on the timeline
 
+# Link buttons under the hero: (file name, glyph, label, handle, url)
+LINKS = [
+    ('linkedin', 'linkedin', 'LinkedIn', 'aryanthejain', 'https://www.linkedin.com/in/aryanthejain/'),
+    ('scholar', 'book', 'Google Scholar', '3 papers', 'https://scholar.google.com/citations?user=-r_1bb0AAAAJ'),
+    ('orcid', 'orcid', 'ORCID', '0009-0005-7034-0371', 'https://orcid.org/0009-0005-7034-0371'),
+]
+
+HIGHLIGHTS = [
+    ('trophy', 'Amadeus Award', 'Best 2nd-year group project'),
+    ('rocket', 'NASA Artemis', '"Moon to Mars" winner'),
+    ('globe', 'COP29 dataset', 'Climate TRACE inventory'),
+    ('medal', 'UN V-Award', 'Social impact, 2022'),
+]
+
+NOW_ITEMS = [
+    ('agents', 'Research Engineer · stealth startup',
+     'Building a learned governance layer for multi-agent systems: adaptive permissioning, escalation and auditability.', None),
+    ('people', 'Co-Chair elect, Imperial College AI Society',
+     'And Lead of Google Developer Groups at Imperial, running workshops, projects and the AI-in-Energy Hackathon.', None),
+    ('cap', 'Year 3 · M.Eng Computing (AI & ML)', None,
+     ['Generative AI', 'Mathematics for ML', 'NLP', 'Computer Vision', 'Concurrency', 'Advanced Computer Architecture',
+      'Digital Systems Design', 'Systems Performance Engineering', 'Corporate Finance']),
+]
+
 # (logo file or glyph, organisation, role, start (y, m), end (y, m) or None for ongoing, kind)
 EXPERIENCE = [
     ('bending-spoons', 'Bending Spoons · Harvest', 'Software Engineering Intern', (2026, 7), (2026, 10), 'work'),
@@ -28,6 +52,11 @@ IMPACT = {
         ('#1', 'contributor', 'on the team this quarter'),
         ('6.7×', 'faster assignment page', '2.7s → 0.4s'),
         ('$5M', 'ARR product rebuilt', 'natively inside Harvest'),
+    ],
+    'bullets': [
+        "Rebuilt Forecast, Harvest's decade-old sister product, natively inside Harvest: owned architecture, data models, APIs and delivery across capacity planning, scheduling, utilisation and plan-vs-actual.",
+        "Built a self-serve import that brings Forecast customers' scheduling history across without loss.",
+        'Kept the planning engine interactive across 1,000-day horizons, 20k assignments and 2,000+ projects. Also shipped milestone billing, project tags and permissions, and gave 48 code reviews.',
     ],
 }
 
@@ -78,3 +107,53 @@ SYSTEMS = [
     ('glyph:terminal', 'PintOS kernel', 'Scheduling, synchronisation, virtual memory, syscalls and file systems.'),
     ('glyph:braces', 'WACC compiler', 'Type checking, IRs, optimisations and native code generation.'),
 ]
+
+RESEARCH = [
+    ('Harnessing Satellite Images and Machine Learning to Detect Wastewater Treatment Plants Globally',
+     'A. Jain, L. Sridhar, A. Davitt, G. Volpato, G. McCormick, H. Srinivas', 'AGU FALL MEETING 2023 · GC21F-0964'),
+    ('ClimateTRACE Facility-Level Wastewater Emissions Dataset',
+     'G. Collins, A. Jain, P. Sicurello, E. Kirwan, P. Tulloch, C. Piatko, L. Sridhar et al.', 'AGU FALL MEETING 2024 · H53O-1308'),
+    ('Wastewater Sector: Emissions from Wastewater Treatment Plants',
+     'A. Jain, L. Sridhar, A. Davitt', 'AGU24 · 2024'),
+    ('AI at the Edge: Imagining the Mega Impact',
+     'Co-lead and technical author', 'PEOPLE+AI · REPORT'),
+]
+
+LEADERSHIP = [
+    ('bolt', 'AI-in-Energy Hackathon', 'Led it: 450+ participants, £25k in prizes, sponsors incl. Google, Anthropic and Beckn.'),
+    ('people', 'Google Developer Groups', 'Lead at Imperial, after a year as Technical Director of the student club.'),
+    ('medal', 'DhanDanaDan', 'Founded a financial literacy platform that certified 5,500+ learners. UN V-Award 2022.'),
+    ('watchbot', 'WatchBOT', 'Founded a computer vision startup for classroom attention. US$20k raised, piloted in 3 schools.'),
+    ('star', 'AP Scholar with Distinction', '5/5 in Calculus BC, Statistics and Physics C. Merit, Indian Olympiad Qualifier in Maths.'),
+    ('note', 'Off the keyboard', 'Guitar, RSL Grade 8 Merit. Tennis for Imperial and for Haryana in AITA tournaments.'),
+]
+
+STACK = [
+    ('LANGUAGES', 'py,c,ts,scala,haskell,java,kotlin,ruby,bash'),
+    ('ML · SYSTEMS · WEB', 'pytorch,tensorflow,react,nextjs,nodejs,postgres,redis,docker,gcp,linux,git'),
+]
+
+SIDE = ('glyph:target', 'Focus-Mode', 'My own macOS focus timer and site blocker, with lock-in modes and a Chrome extension.',
+        'https://github.com/aryan-the-jain/Focus-Mode')
+
+# "Year in work" heatmap: an approximate reconstruction of private work
+# (Imperial GitLab, Sarvam, Bending Spoons) that GitHub's own graph can't show.
+# (start, end, weekday intensity 0-1, weekend intensity 0-1, label or None)
+YEAR_START = (2025, 7, 1)
+YEAR_END = (2026, 10, 9)
+YEAR_PERIODS = [
+    ((2025, 7, 7), (2025, 9, 26), 0.86, 0.3, 'Sarvam AI'),
+    ((2025, 9, 27), (2025, 10, 5), 0.2, 0.15, None),
+    ((2025, 10, 6), (2025, 12, 12), 0.8, 0.6, 'PintOS · term 1'),
+    ((2025, 12, 13), (2026, 1, 9), 0.18, 0.1, None),
+    ((2026, 1, 10), (2026, 3, 20), 0.92, 0.82, 'WACC compiler · term 2'),
+    ((2026, 3, 21), (2026, 4, 26), 0.3, 0.2, 'exams'),
+    ((2026, 4, 27), (2026, 6, 20), 0.76, 0.55, 'Alongside · DRP'),
+    ((2026, 6, 21), (2026, 7, 5), 0.3, 0.2, None),
+    ((2026, 7, 6), (2026, 10, 2), 0.96, 0.3, 'Harvest @ Bending Spoons'),
+    ((2026, 10, 3), (2026, 10, 9), 0.7, 0.6, None),
+]
+# Weekly coursework on GitLab during term, on top of the big projects.
+YEAR_TERMS = [((2025, 10, 6), (2025, 12, 12)), ((2026, 1, 10), (2026, 3, 20)), ((2026, 4, 27), (2026, 6, 20))]
+YEAR_COURSEWORK = 0.15
+YEAR_BACKGROUND = 0.08  # side projects and part-time research outside the main blocks
