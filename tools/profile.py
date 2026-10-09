@@ -12,6 +12,8 @@ LINKS = [
     ('linkedin', 'linkedin', 'LinkedIn', 'aryanthejain', 'https://www.linkedin.com/in/aryanthejain/'),
     ('scholar', 'book', 'Google Scholar', '3 papers', 'https://scholar.google.com/citations?user=-r_1bb0AAAAJ'),
     ('orcid', 'orcid', 'ORCID', '0009-0005-7034-0371', 'https://orcid.org/0009-0005-7034-0371'),
+    ('email', 'mail', 'Email', 'aryanthejain@gmail.com', 'mailto:aryanthejain@gmail.com'),
+    ('phone', 'phone', 'Phone', '+44 7721 170621', 'tel:+447721170621'),
 ]
 
 HIGHLIGHTS = [
@@ -33,7 +35,7 @@ NOW_ITEMS = [
 
 # (logo file or glyph, organisation, role, start (y, m), end (y, m) or None for ongoing, kind)
 EXPERIENCE = [
-    ('bending-spoons', 'Bending Spoons · Harvest', 'Software Engineering Intern', (2026, 7), (2026, 10), 'work'),
+    ('bending-spoons', 'Bending Spoons · Harvest', 'Software Engineering Intern', (2026, 7), (2026, 9), 'work'),
     ('glyph:stealth', 'Stealth startup', 'Research Engineer, part-time', (2026, 1), None, 'work'),
     ('sarvam', 'Sarvam AI', 'Data Infrastructure Intern', (2025, 7), (2025, 9), 'work'),
     ('people-plus-ai', 'People+ai', 'Intern, AI at the Edge', (2024, 11), (2025, 3), 'work'),
@@ -46,7 +48,7 @@ EXPERIENCE = [
 IMPACT = {
     'logo': 'bending-spoons',
     'title': 'BENDING SPOONS  ·  HARVEST',
-    'subtitle': 'SOFTWARE ENGINEERING INTERN  ·  JUL–OCT 2026',
+    'subtitle': 'SOFTWARE ENGINEERING INTERN  ·  JUL–SEP 2026',
     'stats': [
         ('115', 'merged PRs', 'in 13 weeks'),
         ('#1', 'contributor', 'on the team this quarter'),
@@ -136,24 +138,38 @@ STACK = [
 SIDE = ('glyph:target', 'Focus-Mode', 'My own macOS focus timer and site blocker, with lock-in modes and a Chrome extension.',
         'https://github.com/aryan-the-jain/Focus-Mode')
 
-# "Year in work" heatmap: an approximate reconstruction of private work
-# (Imperial GitLab, Sarvam, Bending Spoons) that GitHub's own graph can't show.
-# (start, end, weekday intensity 0-1, weekend intensity 0-1, label or None)
+# "Year in work" heatmap. Days with public GitHub contributions use the real
+# counts from tools/cache/contributions.json (run tools/fetch_github.py). Private
+# work that GitHub can't see (Sarvam, Imperial GitLab, Bending Spoons) is estimated
+# from these periods: (start, end, weekday intensity 0-1, weekend intensity 0-1, label).
 YEAR_START = (2025, 7, 1)
 YEAR_END = (2026, 10, 9)
 YEAR_PERIODS = [
-    ((2025, 7, 7), (2025, 9, 26), 0.86, 0.3, 'Sarvam AI'),
-    ((2025, 9, 27), (2025, 10, 5), 0.2, 0.15, None),
-    ((2025, 10, 6), (2025, 12, 12), 0.8, 0.6, 'PintOS · term 1'),
-    ((2025, 12, 13), (2026, 1, 9), 0.18, 0.1, None),
-    ((2026, 1, 10), (2026, 3, 20), 0.92, 0.82, 'WACC compiler · term 2'),
-    ((2026, 3, 21), (2026, 4, 26), 0.3, 0.2, 'exams'),
-    ((2026, 4, 27), (2026, 6, 20), 0.76, 0.55, 'Alongside · DRP'),
-    ((2026, 6, 21), (2026, 7, 5), 0.3, 0.2, None),
-    ((2026, 7, 6), (2026, 10, 2), 0.96, 0.3, 'Harvest @ Bending Spoons'),
-    ((2026, 10, 3), (2026, 10, 9), 0.7, 0.6, None),
+    ((2025, 7, 7), (2025, 9, 26), 0.86, 0.3),      # Sarvam
+    ((2025, 10, 6), (2025, 10, 12), 0.45, 0.2),    # term 1, week 1
+    ((2025, 10, 13), (2025, 12, 12), 0.84, 0.22),  # PintOS, five days a week
+    ((2025, 12, 13), (2026, 1, 9), 0.15, 0.1),     # winter break
+    ((2026, 1, 10), (2026, 3, 20), 0.94, 0.25),    # WACC, five days a week
+    ((2026, 3, 21), (2026, 4, 26), 0.28, 0.18),    # Easter
+    ((2026, 4, 27), (2026, 6, 20), 0.5, 0.25),     # term 3
+    ((2026, 6, 21), (2026, 7, 5), 0.25, 0.15),
+    ((2026, 7, 6), (2026, 9, 30), 0.96, 0.3),      # Harvest
+]
+
+# Parallel tracks drawn under the commit grid, on the same time axis.
+# (lane, [(start, end or None for ongoing, label)])
+YEAR_LANES = [
+    ('WORK', [((2025, 7, 7), (2025, 9, 26), 'Sarvam AI'), ((2026, 7, 6), (2026, 9, 30), 'Harvest @ Bending Spoons')]),
+    ('UNI PROJECTS', [((2025, 10, 13), (2025, 12, 12), 'PintOS kernel'), ((2026, 1, 12), (2026, 3, 20), 'WACC compiler'),
+                      ((2026, 5, 25), (2026, 6, 19), 'Alongside')]),
+    ('COURSEWORK', [((2025, 10, 6), (2025, 12, 12), 'Term 1'), ((2026, 1, 10), (2026, 3, 20), 'Term 2'),
+                    ((2026, 4, 27), (2026, 6, 20), 'Term 3')]),
+    ('SIDE PROJECTS', [((2025, 11, 1), (2026, 1, 5), 'EQIP'), ((2026, 1, 12), (2026, 2, 28), 'P2P energy trading'),
+                       ((2026, 10, 4), None, 'Focus-Mode')]),
+    ('RESEARCH', [((2026, 1, 5), None, 'Stealth startup · multi-agent governance')]),
+    ('LEADERSHIP', [((2025, 7, 1), None, 'Google Developer Groups lead · AI Society')]),
 ]
 # Weekly coursework on GitLab during term, on top of the big projects.
 YEAR_TERMS = [((2025, 10, 6), (2025, 12, 12)), ((2026, 1, 10), (2026, 3, 20)), ((2026, 4, 27), (2026, 6, 20))]
-YEAR_COURSEWORK = 0.15
-YEAR_BACKGROUND = 0.08  # side projects and part-time research outside the main blocks
+YEAR_COURSEWORK = 0.25
+YEAR_BACKGROUND = 0.06  # side projects and part-time research outside the main blocks

@@ -1,7 +1,8 @@
 """Builds the profile graphics in assets/ from tools/profile.py.
 
     pip install pillow fonttools
-    python tools/build.py
+    python tools/fetch_github.py   # optional: refresh real contribution counts
+    python tools/build.py          # graphics + README.md
 
 Every SVG comes in a light and a dark version and embeds subsetted fonts, so it
 renders the same everywhere GitHub shows it.
@@ -9,6 +10,7 @@ renders the same everywhere GitHub shows it.
 
 import base64
 import io
+import json
 import math
 import os
 import random
@@ -167,6 +169,8 @@ GLYPHS = {
     'star': '<path d="M50 24 L57 41 L76 42 L61 54 L66 72 L50 62 L34 72 L39 54 L24 42 L43 41 Z"/>',
     'note': '<path d="M42 70 V32 L72 26 V62"/><circle cx="35" cy="70" r="8"/><circle cx="65" cy="62" r="8"/>',
     'target': '<circle cx="50" cy="50" r="24"/><circle cx="50" cy="50" r="13"/><circle cx="50" cy="50" r="3" fill="#f2f2f2"/>',
+    'mail': '<rect x="22" y="30" width="56" height="40" rx="5"/><path d="M24 33 L50 54 L76 33"/>',
+    'phone': '<rect x="34" y="20" width="32" height="60" rx="7"/><path d="M45 70 H55"/>',
     'paper': '<path d="M32 22 H58 L70 34 V78 H32 Z M58 22 V34 H70 M40 46 H62 M40 56 H62 M40 66 H54"/>',
     'braces': '<path d="M42 28 C34 28 36 40 36 44 C36 48 30 50 30 50 C30 50 36 52 36 56 C36 60 34 72 42 72 M58 28 C66 28 64 40 64 44 C64 48 70 50 70 50 C70 50 64 52 64 56 C64 60 66 72 58 72"/>',
 }
@@ -626,32 +630,43 @@ def year(theme):
     start -= dt.timedelta(days=(start.weekday() + 1) % 7)  # weeks start on Sunday
     days = (end - start).days + 1
     weeks = math.ceil(days / 7)
-    gx, gy = 96, 142
+    gx, gy = 168, 142
     pitch = int((W - gx - 48) // weeks)
     gap = 3
     cell = pitch - gap
-    H = gy + 7 * (cell + gap) + 150
-    s = Svg(W, H, theme, 'A year of work, reconstructed from private repositories: ' + '; '.join(p[4] for p in P.YEAR_PERIODS if p[4]))
+    lane_h = 34
+    lanes_top = gy + 7 * (cell + gap) + 30
+    H = lanes_top + len(P.YEAR_LANES) * lane_h + 70
+    s = Svg(W, H, theme, 'Work since July 2025, public and estimated private. ' + '. '.join(
+        f'{lane}: ' + ', '.join(item[2] for item in items) for lane, items in P.YEAR_LANES))
     t = s.t
     levels = (['#161616', '#3a3a3a', '#6e6e6e', '#a8a8a8', '#f2f2f2'] if theme == 'dark'
               else ['#ededed', '#c9c9c9', '#8c8c8c', '#4a4a4a', '#0a0a0a'])
     s.panel()
     first = dt.date(*P.YEAR_START)
-    header(s, f'WORK  ·  {MONTHS[first.month - 1].upper()} {first.year} → NOW', 'MOSTLY PRIVATE  ·  RECONSTRUCTED')
+    header(s, f'WORK  ·  {MONTHS[first.month - 1].upper()} {first.year} → NOW', 'PUBLIC + PRIVATE')
 
-    periods = [(dt.date(*a), dt.date(*b), wd, we, lab) for a, b, wd, we, lab in P.YEAR_PERIODS]
+    periods = [(dt.date(*a), dt.date(*b), wd, we) for a, b, wd, we in P.YEAR_PERIODS]
 
     terms = [(dt.date(*a), dt.date(*b)) for a, b in P.YEAR_TERMS]
 
     def intensity(d):
         extra = P.YEAR_COURSEWORK if any(a <= d <= b for a, b in terms) else 0
-        for a, b, wd, we, _ in periods:
+        for a, b, wd, we in periods:
             if a <= d <= b:
                 return min(1, (wd if d.weekday() < 5 else we) + extra)
         return P.YEAR_BACKGROUND + extra
 
     rnd = random.Random(2026)
     month_done = set()
+    real = {}
+    cache = os.path.join(HERE, 'cache', 'contributions.json')
+    if os.path.exists(cache):
+        with open(cache) as f:
+            real = json.load(f)
+
+    def real_level(n):
+        return 0 if n == 0 else 1 if n <= 2 else 2 if n <= 6 else 3 if n <= 14 else 4
     for i in range(days):
         d = start + dt.timedelta(days=i)
         col, row = i // 7, i % 7
@@ -660,6 +675,7 @@ def year(theme):
         # Busy periods mean most days have commits, at varying volumes.
         v = p * (0.25 + rnd.random()) if rnd.random() < p + 0.05 else 0
         lvl = 0 if v < 0.12 else 1 if v < 0.3 else 2 if v < 0.5 else 3 if v < 0.74 else 4
+        lvl = max(lvl, real_level(real.get(d.isoformat(), 0)))
         s.add(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{levels[lvl]}"/>')
         if d.day <= 7 and row == 0 and (d.year, d.month) not in month_done:
             month_done.add((d.year, d.month))
@@ -670,22 +686,33 @@ def year(theme):
     yt = gy + ((days - 1) % 7) * (cell + gap)
     s.add(f'<rect x="{xt - 3}" y="{yt - 3}" width="{cell + 6}" height="{cell + 6}" rx="6" fill="none" stroke="{t["text"]}" stroke-width="1.5"/>')
 
-    # Labelled bands under the grid, one per period.
-    by = gy + 7 * (cell + gap) + 22
-    label_end = 0
-    for a, b, wd, we, lab in periods:
-        if not lab:
-            continue
-        x1 = gx + max(0, (a - start).days // 7) * (cell + gap)
-        x2 = gx + min(weeks - 1, (b - start).days // 7) * (cell + gap) + cell
-        strong = wd > 0.6
-        s.add(f'<rect x="{x1}" y="{by}" width="{x2 - x1}" height="6" rx="3" fill="{t["text"]}" fill-opacity="{0.9 if strong else 0.35}"/>')
-        if x1 >= label_end + 14:
-            s.text(x1, by + 30, lab, 's' if strong else 'r', 15, t['text'] if strong else t['muted'])
-            label_end = x1 + measure(lab, 's' if strong else 'r', 15)
+    # Parallel tracks under the grid, on the same time axis.
+    def X(d):
+        return gx + (d - start).days / 7 * (cell + gap)
+
+    x_end = gx + weeks * (cell + gap) - gap
+    for k, (lane, items) in enumerate(P.YEAR_LANES):
+        y = lanes_top + k * lane_h
+        s.add(f'<line x1="{gx}" y1="{y + lane_h / 2:.1f}" x2="{x_end:.1f}" y2="{y + lane_h / 2:.1f}" stroke="{t["faint"]}" stroke-opacity=".6"/>')
+        s.text(gx - 14, y + lane_h / 2 + 4, lane, 'mono', 11, t['muted'], 'end', ls=1)
+        for a, b, label in items:
+            a = dt.date(*a)
+            b = dt.date(*b) if b else end
+            x1, x2 = X(a), min(X(b) + cell, x_end)
+            bh = 22
+            by = y + (lane_h - bh) / 2
+            s.add(f'<rect x="{x1:.1f}" y="{by:.1f}" width="{max(x2 - x1, 8):.1f}" height="{bh}" rx="6" fill="{t["text"]}"/>')
+            tw = measure(label, 's', 13)
+            if tw + 20 <= x2 - x1:
+                s.text(x1 + 10, by + 15.5, label, 's', 13, t['panel'])
+            elif x2 + 8 + tw < W - 48:
+                s.text(x2 + 8, by + 15.5, label, 's', 13, t['text'])
+            else:
+                s.text(x1 - 8, by + 15.5, label, 's', 13, t['text'], 'end')
+
     # Legend and note
-    ly = H - 34
-    s.text(48, ly, 'Approximate: rebuilt from Sarvam, Imperial GitLab and Bending Spoons work, which this account’s graph can’t show.', 'r', 14, t['muted'])
+    ly = H - 30
+    s.text(48, ly, 'Public GitHub days are exact. Private work (Sarvam, Imperial GitLab, Bending Spoons) is estimated.', 'r', 14, t['muted'])
     lx = W - 48 - 5 * (14 + 4) - measure('More', 'mono', 12)
     s.text(lx - 10 - 0, ly, 'Less', 'mono', 12, t['muted'], 'end')
     for k, c in enumerate(levels):
@@ -717,6 +744,9 @@ def main():
             built.append(save(f'card-{key}', theme, card(theme, key, d)))
     for path in built:
         print(f'{os.path.getsize(path) / 1024:6.1f} KB  {os.path.relpath(path, ROOT)}')
+    import readme
+    readme.build()
+    print('README.md written')
 
 
 if __name__ == '__main__':
