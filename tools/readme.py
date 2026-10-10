@@ -26,7 +26,6 @@ def row(items, width):
 
 
 def build():
-    links = [link(url, pic(f'link-{key}', f'{label}: {handle}', '19.2%')) for key, _, label, handle, url in P.LINKS]
     cards = {
         'alongside': 'https://github.com/aryan-the-jain/DRP_07',
         'p2p': 'https://github.com/kkorel/p2p-energy-trading',
@@ -35,8 +34,7 @@ def build():
     }
     card = lambda k: link(cards[k], pic(f'card-{k}', f'{P.PROJECTS[k]["title"]}: {P.PROJECTS[k]["text"]}', '49%'))
     parts = [
-        pic('hero', f'{P.NAME}. {P.TAGLINE}'),
-        row(links, '19.2%'),
+        pic('hero', f'{P.NAME}. {P.TAGLINE} LinkedIn: aryanthejain. Email: aryanthejain@gmail.com.'),
         pic('highlights', 'Highlights: ' + '; '.join(f'{x[1]}, {x[2]}' for x in P.HIGHLIGHTS)),
         pic('now', 'Now: ' + '; '.join(x[1] for x in P.NOW_ITEMS)),
         pic('timeline', 'Experience: ' + '; '.join(f'{r[2]} at {r[1]}' for r in P.EXPERIENCE)),

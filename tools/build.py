@@ -246,10 +246,12 @@ def hero(theme):
     end = x + measure(lines[-1], 'r', 27) + 8
     s.add(f'<rect class="caret" x="{end:.1f}" y="{256 + (len(lines) - 1) * 38 - 24}" width="13" height="30" fill="{t["text"]}"/>')
     cx = x
-    s.add('<g class="f d4">')
-    for chip in P.CHIPS:
-        cx += s.chip(cx, 352, chip, 15) + 10
-    s.add('</g>')
+    for glyph, label in P.CONTACTS:
+        w = measure(label, 'mono', 15) + 58
+        s.add(f'<rect x="{cx:.1f}" y="346" width="{w:.1f}" height="38" rx="19" fill="{t["chip"]}" stroke="{t["chipline"]}"/>')
+        s.add(f'<g transform="translate({cx + 12:.1f} 353) scale(0.24)" fill="none" stroke="{t["text"]}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">{GLYPHS[glyph]}</g>')
+        s.text(cx + 44, 370, label, 'mono', 15, t['text'])
+        cx += w + 10
     return s
 
 
@@ -427,22 +429,6 @@ def header(s, label, right=None, y=62):
     if right:
         s.text(s.w - 48, y, right, 'mono', 14, t['muted'], 'end', ls=2)
     s.add(f'<line x1="48" y1="{y + 28}" x2="{s.w - 48}" y2="{y + 28}" stroke="{t["faint"]}"/>')
-
-
-def link(theme, item):
-    """Compact contact pill, sized so five fit on one row."""
-    _, glyph, label, handle, _ = item
-    W, H = 256, 76
-    s = Svg(W, H, theme, f'{label}: {handle}')
-    t = s.t
-    s.panel(38)
-    s.icon('glyph:' + glyph, 14, 14, 48)
-    s.text(74, 34, label, 's', 18, t['text'])
-    size = 13
-    while size > 10 and measure(handle, 'mono', size) > W - 74 - 18:
-        size -= 0.5
-    s.text(74, 55, handle, 'mono', size, t['muted'])
-    return s
 
 
 def highlights(theme):
@@ -751,8 +737,6 @@ def main():
         built.append(save('stack', theme, stack(theme)))
         built.append(save('side', theme, side(theme)))
         built.append(save('year', theme, year(theme)))
-        for item in P.LINKS:
-            built.append(save(f'link-{item[0]}', theme, link(theme, item)))
         built.append(save('timeline', theme, timeline(theme)))
         built.append(save('impact', theme, impact(theme)))
         built.append(save('climate', theme, climate(theme)))

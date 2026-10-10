@@ -1,20 +1,12 @@
 """Everything the profile graphics say. Edit this, then run `python tools/build.py`."""
 
 NAME = 'Aryan Jain'
-KICKER = 'RESEARCH ENGINEER  ·  IMPERIAL COLLEGE LONDON'
+KICKER = 'M.ENG AI & ML  ·  FIRST-CLASS  ·  IMPERIAL COLLEGE LONDON'
 TAGLINE = 'Building reliable AI systems across machine learning, systems and distributed infrastructure.'
-CHIPS = ['M.ENG COMPUTING · AI & ML', 'FIRST-CLASS', 'LONDON']
+# Contact row along the bottom of the hero: (glyph, text)
+CONTACTS = [('linkedin', 'aryanthejain'), ('book', 'Google Scholar'), ('mail', 'aryanthejain@gmail.com')]
 
 NOW = (2026, 10)  # the "now" line on the timeline
-
-# Link buttons under the hero: (file name, glyph, label, handle, url)
-LINKS = [
-    ('linkedin', 'linkedin', 'LinkedIn', 'aryanthejain', 'https://www.linkedin.com/in/aryanthejain/'),
-    ('scholar', 'book', 'Google Scholar', '3 papers', 'https://scholar.google.com/citations?user=-r_1bb0AAAAJ'),
-    ('orcid', 'orcid', 'ORCID', '0009-0005-7034-0371', 'https://orcid.org/0009-0005-7034-0371'),
-    ('email', 'mail', 'Email', 'aryanthejain@gmail.com', 'mailto:aryanthejain@gmail.com'),
-    ('phone', 'phone', 'Phone', '+44 7721 170621', 'tel:+447721170621'),
-]
 
 HIGHLIGHTS = [
     ('trophy', 'Amadeus Award', 'Best 2nd-year group project'),
@@ -26,7 +18,7 @@ HIGHLIGHTS = [
 NOW_ITEMS = [
     ('agents', 'Research Engineer · stealth startup',
      'Building a learned governance layer for multi-agent systems: adaptive permissioning, escalation and auditability.', None),
-    ('people', 'Co-Chair elect, Imperial College AI Society',
+    ('people', 'Co-Chair, Imperial College AI Society',
      'And Lead of Google Developer Groups at Imperial, running workshops, projects and the AI-in-Energy Hackathon.', None),
     ('cap', 'Year 3 · M.Eng Computing (AI & ML)', None,
      ['Generative AI', 'Mathematics for ML', 'NLP', 'Computer Vision', 'Concurrency', 'Advanced Computer Architecture',
